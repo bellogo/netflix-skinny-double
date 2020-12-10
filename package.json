@@ -1,0 +1,33 @@
+{
+  "name": "netflix-skinny-double",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bellogo/netflix-skinny-double.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bellogo/netflix-skinny-double/issues"
+  },
+  "homepage": "https://github.com/bellogo/netflix-skinny-double#readme",
+  "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
