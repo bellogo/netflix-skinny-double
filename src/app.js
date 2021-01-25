@@ -19,3 +19,5 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("Welcome to netflix skinny double");
 });
+
+export default app;
