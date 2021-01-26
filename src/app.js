@@ -10,10 +10,12 @@ const port = process.env.PORT || 3000;
 
 // connect to DB and Start server
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(result => app.listen(port, () => {
-    console.log(`DB connnected, Server Running on: ${port}`);
-  }))
+  .then(result => console.log("DB connnected"))
   .catch(err => console.log(err));
+
+app.listen(port, () => {
+  console.log(`Server Running on: ${port}`);
+});
 
 app.use(bodyParser.json());
 app.get("/", (req, res) => {
