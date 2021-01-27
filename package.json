@@ -4,10 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc --require --reporter=html --reporter=text mocha -r @babel/register ./src/tests/index.js --timeout 10000 --recursive --exit || true ",
+    "test": "nyc --reporter=lcov --reporter=text mocha -r @babel/register ./src/tests/index.js --exit",
     "start": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js",
     "lint": "eslint src/  --fix",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc npm run test && nyc report --reporter=text-lcov --reporter=lcov | node ./node_modules/coveralls/bin/coveralls.js --verbose"
   },
   "repository": {
     "type": "git",
