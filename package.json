@@ -5,7 +5,11 @@
   "main": "app.js",
   "scripts": {
     "test": "nyc --reporter=lcov --reporter=text mocha -r @babel/register ./src/tests/index.js --exit",
-    "start": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js",
+    "start-dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js",
+    "clean": "npm rm -rf build && npm run build-babel",
+    "build": "npm run clean && npm run build-babel",
+    "build-babel": "babel -d ./build ./src -s",
+    "start": "npm run build && node ./build/app.js",
     "lint": "eslint src/  --fix",
     "coverage": "nyc npm run test && nyc report --reporter=text-lcov --reporter=lcov | node ./node_modules/coveralls/bin/coveralls.js --verbose"
   },
@@ -20,6 +24,7 @@
   },
   "homepage": "https://github.com/bellogo/netflix-skinny-double#readme",
   "dependencies": {
+    "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/node": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
