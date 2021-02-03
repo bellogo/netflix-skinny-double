@@ -9,9 +9,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // connect to DB and Start server
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(result => console.log("DB connnected"))
-  .catch(err => console.log(err));
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connection.once("open", () => console.log("DB connnected"))
+  .on("error", () => console.log("Conection error", error));
 
 app.listen(port, () => {
   console.log(`Server Running on: ${port}`);
