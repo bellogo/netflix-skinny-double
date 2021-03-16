@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import router from "./routes/index";
 
 dotenv.config();
 
@@ -14,13 +15,15 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology
 mongoose.connection.once("open", () => console.log("DB connnected"))
   .on("error", () => console.log("Conection error", error));
 
-app.listen(port, () => {
-  console.log(`Server Running on: ${port}`);
-});
-
 app.use(bodyParser.json());
+app.use("/api/v1/", router);
+
 app.get("/", (req, res) => {
   res.send("Welcome to netflix skinny double");
+});
+
+app.listen(port, () => {
+  console.log(`Server Running on: ${port}`);
 });
 
 export default app;
