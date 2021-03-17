@@ -12,6 +12,8 @@ const validation = movie => {
       .empty()
       .messages({
         "any.required": "genre is required.",
+        "array.base": "genre must be an array.",
+        "string.base": "genre array items must be of type string"
       }),
     rating: Joi.number().required().min(0).max(10)
       .empty()
