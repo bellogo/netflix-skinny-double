@@ -3,9 +3,10 @@ import Movie from "../models/movie";
 
 export default class movieController {
   static async addMovie(req, res, next) {
-    const { title } = req.body;
     const { error } = validation(req.body);
     if (error) return next({ statusCode: 400, message: error.message });
+    req.body.title = req.body.title.toLowerCase();
+    const { title } = req.body;
     const film = await Movie.findOne({ title });
     if (film) return next({ statusCode: 400, message: "movie already exists." });
     const newMovie = await Movie.create(req.body);
@@ -35,6 +36,7 @@ export default class movieController {
     const film = await Movie.findOne({ _id: id });
     if (!film) return next({ statusCode: 404, message: "movie not found." });
     if (req.body.title) {
+      req.body.title = req.body.title.toLowerCase();
       const movie = await Movie.findOne({ title: req.body.title });
       if (movie) return next({ statusCode: 400, message: "movie title already exists." });
     }

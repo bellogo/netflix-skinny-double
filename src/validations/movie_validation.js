@@ -22,7 +22,7 @@ const validation = movie => {
         "number.min": "rating must be a minimum of 0",
         "number.max": "rating must be a maximum of 10",
         "number.empty": "rating cannot be an empty field.",
-        "number.base": "rating must be a nnumber."
+        "number.base": "rating must be a number."
       }),
     description: Joi.string().required()
       .empty()
