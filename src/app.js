@@ -16,7 +16,7 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology
 mongoose.Promise = global.Promise;
 
 mongoose.connection.once("open", () => console.log("DB connnected"))
-  .on("error", () => console.log("Conection error", error));
+  .on("error", () => console.log("DB conection error"));
 
 app.use(bodyParser.json());
 app.use("/api/v1/", router);
