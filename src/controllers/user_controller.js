@@ -3,8 +3,6 @@ import generateToken from "../utilities/jwt";
 import userValidation from "../validations/user_validation";
 import Users from "../models/user";
 
-const secretKey = process.env.JWT_KEY;
-
 export default class userController {
   static async addUser(req, res, next) {
     const { error } = userValidation(req.body);

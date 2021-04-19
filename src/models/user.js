@@ -1,4 +1,3 @@
-import { boolean } from "joi";
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
@@ -12,11 +11,13 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
   },
   role: {
     type: String,
     default: "user"
+  },
+  referenceId: {
+    type: String
   },
   verified: {
     type: Boolean,
