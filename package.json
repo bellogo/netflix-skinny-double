@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.12.10",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
-    "c": "^7.12.10",
+    "@babel/cli": "^7.12.10",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
