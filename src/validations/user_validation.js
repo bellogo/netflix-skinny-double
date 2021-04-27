@@ -13,10 +13,11 @@ const validation = user => {
       }),
 
     name: Joi.string().min(2)
-      .max(255)
+      .max(255).required()
       .empty()
       .messages({
         "string.base": "name must be a string.",
+        "any.required": "name is required",
         "string.empty": "name cannot be an empty field.",
         "string.min": "name should have a minimum length of 2 characters.",
         "string.max": "name should have a maximum length of 255 characters."

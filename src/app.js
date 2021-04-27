@@ -36,7 +36,7 @@ mongoose.connection.once("open", () => console.log("DB connnected"))
   .on("error", () => console.log("DB conection error"));
 
 app.get("/", (req, res) => {
-  if (!req.user.name) {
+  if (!req.user) {
     res.send("Welcome to netflix skinny double");
   } else {
     res.send(`${req.user.name} Welcome to netflix skinny double`);
