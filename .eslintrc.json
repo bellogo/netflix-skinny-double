@@ -13,6 +13,7 @@
         "allowImportExportEverywhere": true
       },
     "rules": {
+      "no-underscore-dangle":"off",
       "linebreak-style": 0,
       "quotes": ["error", "double"],
       "semi": ["error", "always"],

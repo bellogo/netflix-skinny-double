@@ -17,7 +17,16 @@ jobs:
     - run: npm install
     - run: npm run build --if-present
     - run: npm run coverage
-
+      env:
+        GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+        GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        GOOGLE_CALLBACK_URL: ${{ secrets.GOOGLE_CALLBACK_URL }}
+        CLIENT_ID_GITHUB: ${{ secrets.CLIENT_ID_GITHUB }}
+        CLIENT_SECRET_GITHUB: ${{ secrets.CLIENT_SECRET_GITHUB }}
+        CALLBACK_URL_GITHUB: ${{ secrets.CALLBACK_URL_GITHUB }}        
+        COOKIE_KEY: ${{ secrets.COOKIE_KEY }}
+        DB_URL: ${{ secrets.DB_URL }}
+        JWT_KEY: ${{ secrets.JWT_KEY }}
     - name: Coveralls
       uses: coverallsapp/github-action@master
       env:

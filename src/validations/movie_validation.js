@@ -13,14 +13,14 @@ const validation = movie => {
       .messages({
         "any.required": "genre is required.",
         "array.base": "genre must be an array.",
-        "string.base": "genre array items must be of type string"
+        "string.base": "genre array items must be of type string."
       }),
     rating: Joi.number().required().min(0).max(10)
       .empty()
       .messages({
         "any.required": "rating is required.",
-        "number.min": "rating must be a minimum of 0",
-        "number.max": "rating must be a maximum of 10",
+        "number.min": "rating must be a minimum of 0.",
+        "number.max": "rating must be a maximum of 10.",
         "number.empty": "rating cannot be an empty field.",
         "number.base": "rating must be a number."
       }),

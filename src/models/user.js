@@ -3,11 +3,30 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-  email: String,
-  number: Number,
-  password: String,
-  role: String,
-  verified: Boolean
+  email: {
+    type: String
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  number: {
+    type: String,
+  },
+  password: {
+    type: String,
+  },
+  role: {
+    type: String,
+    default: "user"
+  },
+  referenceId: {
+    type: String
+  },
+  verified: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const User = mongoose.model("user", UserSchema);
