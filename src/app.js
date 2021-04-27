@@ -8,30 +8,23 @@ import mongoose from "mongoose";
 import cookieSession from "cookie-session";
 import router from "./routes/index";
 import errorHandler from "./middleware/error_handler";
-import { googleStrategySignUp } from "./utilities/passport_google_signup";
+import passportSetup from "./utilities/passport";
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use("/api/v1/", router);
 
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
-  keys: process.env.COOKIE_KEY,
+  keys: [process.env.COOKIE_KEY],
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use("googleSignUp", googleStrategySignUp);
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
+app.use("/api/v1/", router);
 
 const port = process.env.PORT || 3000;
 
@@ -43,22 +36,12 @@ mongoose.connection.once("open", () => console.log("DB connnected"))
   .on("error", () => console.log("DB conection error"));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to netflix skinny double");
-});
-
-app.get(
-  "/auth/google/signup",
-  passport.authenticate("googleSignUp", {
-    scope: ["profile", "email"],
-  }),
-  (req, res) => {
-    if (!req.user.message) {
-      res.redirect("/");
-    } else {
-      res.status(409).json(req.user);
-    }
+  if (!req.user.name) {
+    res.send("Welcome to netflix skinny double");
+  } else {
+    res.send(`${req.user.name} Welcome to netflix skinny double`);
   }
-);
+});
 
 app.use((req, res, next) => {
   next({ statusCode: 404, message: "route not found." });

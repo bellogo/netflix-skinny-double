@@ -19,10 +19,9 @@ export default class userController {
     const hashedPassword = await hash(req.body.password);
     req.body.password = hashedPassword;
     const newUser = await Users.create(req.body);
-    console.log(newUser);
     const token = await generateToken({ newUser });
     return res.status(201).json({
-      status: "success", code: 201, message: "user has been added successfully.", token
+      status: "success", code: 201, message: "user has been added.", token
     });
   }
 }

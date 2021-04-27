@@ -6,10 +6,20 @@ const validation = user => {
       .max(100)
       .empty()
       .messages({
-        "string.min": "email must be a minimum of 5 characters",
-        "string.max": "email must be a maximum of 100 characters",
+        "string.min": "email must be a minimum of 5 characters.",
+        "string.max": "email must be a maximum of 100 characters.",
         "string.empty": "email cannot be an empty field.",
-        "string.email": "Please enter a valid email",
+        "string.email": "Please enter a valid email.",
+      }),
+
+    name: Joi.string().min(2)
+      .max(255)
+      .empty()
+      .messages({
+        "string.base": "name must be a string.",
+        "string.empty": "name cannot be an empty field.",
+        "string.min": "name should have a minimum length of 2 characters.",
+        "string.max": "name should have a maximum length of 255 characters."
       }),
 
     number: Joi.string().pattern(new RegExp("^[+]([0-9])*$")).min(7)
