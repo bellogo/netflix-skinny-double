@@ -27,6 +27,7 @@ app.use(passport.session());
 app.use("/api/v1/", router);
 
 const port = process.env.PORT || 3000;
+const host = "0.0.0.0";
 
 // connect to DB and Start server
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
@@ -48,7 +49,7 @@ app.use((req, res, next) => {
 });
 app.use(errorHandler);
 
-app.listen(port, () => {
+app.listen(port, host, () => {
   console.log(`Server Running on: ${port}`);
 });
 
