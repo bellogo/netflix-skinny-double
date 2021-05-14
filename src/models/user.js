@@ -1,3 +1,4 @@
+import { number } from "joi";
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
@@ -26,7 +27,8 @@ const UserSchema = new Schema({
   verified: {
     type: Boolean,
     default: false
-  }
+  },
+  verificationCode: { type: Number }
 });
 
 const User = mongoose.model("user", UserSchema);
