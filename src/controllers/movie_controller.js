@@ -1,9 +1,9 @@
-import { validation, validateId, updateValidation } from "../validations/movie_validation";
+import { movieValidation, validateId, updateMovieValidation } from "../utilities/joi_validations";
 import Movie from "../models/movie";
 
 export default class movieController {
   static async addMovie(req, res, next) {
-    const { error } = validation(req.body);
+    const { error } = movieValidation(req.body);
     if (error) return next({ statusCode: 400, message: error.message });
     req.body.title = req.body.title.toLowerCase();
     const { title } = req.body;
@@ -31,7 +31,7 @@ export default class movieController {
     const { id } = req.params;
     const { error } = validateId({ id });
     if (error) return next({ statusCode: 400, message: error.message });
-    const joi = updateValidation(req.body);
+    const joi = updateMovieValidation(req.body);
     if (joi.error) return next({ statusCode: 400, message: joi.error.message });
     const film = await Movie.findOne({ _id: id });
     if (!film) return next({ statusCode: 404, message: "movie not found." });
