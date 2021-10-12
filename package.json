@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "nyc --reporter=lcov --reporter=text mocha -r @babel/register ./src/tests/index.js --exit",
+    "test": "nyc --reporter=lcov --reporter=text mocha -r @babel/register ./_tests_/index.js --exit",
     "start-dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./src/app.js",
     "clean": "npm rm -rf build && npm run build-babel",
     "build": "npm run clean && npm run build-babel",
