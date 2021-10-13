@@ -1,8 +1,8 @@
 import passport from "passport";
 import passportgoogleoauth20 from "passport-google-oauth20";
 import passportgithub2 from "passport-github2";
-import dotenv from "dotenv";
 import Users from "../models/user";
+import config from "../../config";
 
 const StrategyGoogle = passportgoogleoauth20.Strategy;
 const StrategyGithub = passportgithub2.Strategy;
@@ -15,13 +15,11 @@ passport.deserializeUser(async (user, done) => {
   done(null, userDetails);
 });
 
-dotenv.config();
-
 passport.use(new StrategyGoogle(
   {
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    clientID: config.googleClientID,
+    clientSecret: config.googleClientSecret,
+    callbackURL: config.googleCallbackURL,
   },
   async (accessToken, refreshToken, profile, done) => {
     const user = await Users.findOne({ referenceId: profile.id });
@@ -39,9 +37,9 @@ passport.use(new StrategyGoogle(
 
 passport.use(new StrategyGithub(
   {
-    clientID: process.env.CLIENT_ID_GITHUB,
-    clientSecret: process.env.CLIENT_SECRET_GITHUB,
-    callbackURL: process.env.CALLBACK_URL_GITHUB,
+    clientID: config.githubClientID,
+    clientSecret: config.githubClientSecret,
+    callbackURL: config.githubCallbackURL,
   },
   async (accessToken, refreshToken, profile, done) => {
     const user = await Users.findOne({ referenceId: profile.id });

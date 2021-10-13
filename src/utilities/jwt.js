@@ -1,8 +1,7 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import config from "../../config";
 
-dotenv.config();
-const secretKey = process.env.JWT_KEY;
+const secretKey = config.jwtKey;
 
 export default (payload, secret = secretKey) => {
   const token = jwt.sign(payload, secret, { expiresIn: "1d" });
