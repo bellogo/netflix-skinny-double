@@ -1,12 +1,15 @@
-import { Router } from "express";
 import movieRoutes from "./movie_routes";
 import userRoutes from "./user_routes";
 import authRoutes from "./auth_routes";
 
-const router = new Router();
+const express = require("express");
 
-router.use("/", movieRoutes);
-router.use("/user", userRoutes);
-router.use("/auth", authRoutes);
+const router = express.Router();
 
-export default router;
+router.get("", (req, res) => res.send("Welcome to netflix skinny double"));
+
+router.use("/api/v1/movie", movieRoutes);
+router.use("/api/v1/user", userRoutes);
+router.use("/api/v1/auth", authRoutes);
+
+module.exports = router;

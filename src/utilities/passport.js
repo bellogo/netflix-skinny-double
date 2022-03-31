@@ -35,22 +35,22 @@ passport.use(new StrategyGoogle(
   }
 ));
 
-passport.use(new StrategyGithub(
-  {
-    clientID: config.githubClientID,
-    clientSecret: config.githubClientSecret,
-    callbackURL: config.githubCallbackURL,
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    const user = await Users.findOne({ referenceId: profile.id });
-    if (user) return done(null, user._id);
+// passport.use(new StrategyGithub(
+//   {
+//     clientID: config.githubClientID,
+//     clientSecret: config.githubClientSecret,
+//     callbackURL: config.githubCallbackURL,
+//   },
+//   async (accessToken, refreshToken, profile, done) => {
+//     const user = await Users.findOne({ referenceId: profile.id });
+//     if (user) return done(null, user._id);
 
-    const newUser = await Users.create({
-      email: profile.emails[0].value,
-      referenceId: profile.id,
-      verified: true,
-      name: profile.displayName
-    });
-    return done(null, newUser._id);
-  }
-));
+//     const newUser = await Users.create({
+//       email: profile.emails[0].value,
+//       referenceId: profile.id,
+//       verified: true,
+//       name: profile.displayName
+//     });
+//     return done(null, newUser._id);
+//   }
+// ));
