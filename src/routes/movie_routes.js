@@ -1,5 +1,6 @@
 import express from "express";
 import movieController from "../controllers/movie_controller";
+import {Validations} from "../middleware/joi_validations";
 
 const router = express.Router();
 const {
